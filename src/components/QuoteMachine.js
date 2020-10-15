@@ -8,17 +8,19 @@ import IconButton from '@material-ui/core/IconButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTwitter} from '@fortawesome/free-brands-svg-icons'
 
-function QuoteMachine({selectedQuote,assignNewQuoteIndex}) {
+function QuoteMachine({selectedQuote,assignNewQuoteIndex,textColor}) {
     return (
-        <Card>
+        <Card style={{color: textColor,fontSize:'50px'}}>
         <CardContent>
-            <Typography id="text">
-            { selectedQuote.quote}  -- <span id="author">{selectedQuote.author}</span>
+            <Typography id="text" style={{fontSize:'40px',transitionDuration:'1s',transitionTimingFunction:'linear'}}>
+            { selectedQuote.quote}  
+            </Typography>
+            <Typography id="authorText" style={{fontSize:'20px',display:'flex',justifyContent:'flex-end'}}>
+             <span id="author" style={{transitionDuration:'1s',transitionTimingFunction:'linear'}}>---{selectedQuote.author}</span>
             </Typography>
         </CardContent>
         
         <CardActions>
-        <Button size="small" onClick={assignNewQuoteIndex} id="new-quote">New Quote</Button>
         <IconButton
         id="tweet-quote"
             target = "_blank"
@@ -29,6 +31,8 @@ function QuoteMachine({selectedQuote,assignNewQuoteIndex}) {
 
             </FontAwesomeIcon>
         </IconButton>
+        <Button size="small" onClick={assignNewQuoteIndex} id="new-quote" style={{color: textColor}}>New Quote</Button>
+        
         </CardActions>
          
        

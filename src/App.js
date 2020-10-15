@@ -8,8 +8,19 @@ import {  withStyles } from '@material-ui/core/styles';
 const styles={
   container:{
     display: 'flex',
-    alignItems: 'center',
-    height: '100vh'
+    justifyContent: 'center',
+    height: '100vh',
+    flexDirection: 'column',
+    alignItems:'center',
+    transitionDuration: "1s",
+    transitionTimingFunction: 'ease-out'
+  },
+  gridItem:{
+    display: 'flex',
+    height: '40vh',
+    width: '50vw',
+    justifyContent: 'center',
+    alignItems:'center'
   }
 }
 
@@ -20,7 +31,22 @@ class App extends Component{
     super(props)
     this.state = {
       quotes:[],
-      selectedQuoteIndex: null
+      selectedQuoteIndex: null,
+      colors: [
+        '#16a085',
+        '#27ae60',
+        '#2c3e50',
+        '#f39c12',
+        '#e74c3c',
+        '#9b59b6',
+        '#FB6964',
+        '#342224',
+        '#472E32',
+        '#BDBB99',
+        '#77B1A9',
+        '#73A857'
+      ],
+      selectedColorIndex: null
     }
 
     this.generateNewQuoteIndex = this.generateNewQuoteIndex.bind(this)
@@ -35,13 +61,17 @@ class App extends Component{
 
   assignNewQuoteIndex(){
     this.setState({selectedQuoteIndex: this.generateNewQuoteIndex()})
+    this.setState({selectedColorIndex:this.generateNewColorIndex()})
   }
 
   get selectedQuote(){
     if(!this.state.quotes.length || !Number.isInteger(this.state.selectedQuoteIndex)){
       return undefined
+    }else{
+
+      return this.state.quotes[this.state.selectedQuoteIndex]
     }
-    return this.state.quotes[this.state.selectedQuoteIndex]
+    
   }
 
   generateNewQuoteIndex(){
@@ -49,6 +79,10 @@ class App extends Component{
       return
     }
     return random(0, this.state.quotes.length-1)
+  }
+
+  generateNewColorIndex(){
+    return random(0, this.state.colors.length-1)
   }
 
   nextQuoteHandler(){
@@ -59,16 +93,24 @@ class App extends Component{
   render(){
     console.log(this.state.selectedQuoteIndex)
     return (
-      <Grid className = {this.props.classes.container} id="quote-box" justify="center" container >
-        <Grid xs={11} lg={8} item>
+      <Grid 
+      className = {this.props.classes.container} 
+      id="quote-box" 
+      justify="center" 
+      container 
+      style={{backgroundColor:this.state.colors[this.state.selectedColorIndex]}}>
+        <Grid className={this.props.classes.gridItem} xs={11} lg={8} item style={{color:this.state.colors[this.state.selectedColorIndex]} }>
           {this.selectedQuote ?
-          <QuoteMachine selectedQuote={this.selectedQuote} assignNewQuoteIndex={this.assignNewQuoteIndex}/>
+          <QuoteMachine 
+          selectedQuote={this.selectedQuote} 
+          assignNewQuoteIndex={this.assignNewQuoteIndex} 
+          textColor={this.state.colors[this.state.selectedColorIndex]}/>
             : null
           }
-          
         </Grid>
-        
+        <label style={{display:'flex', displayDirection:'column', justifyContent:'flex-end'}}>Created by Qian Tang</label>
       </Grid>
+      
     );
   }
   
