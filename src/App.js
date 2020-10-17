@@ -108,7 +108,8 @@ class App extends Component{
             : null
           }
         </Grid>
-        <label style={{display:'flex', displayDirection:'column', justifyContent:'flex-end'}}>Created by Qian Tang</label>
+        
+        <label style={{display:'flex', displayDirection:'column', justifyContent:'flex-end'}}>© Qian Tang 2020</label>
       </Grid>
       
     );
