@@ -93,25 +93,24 @@ class App extends Component{
   render(){
     console.log(this.state.selectedQuoteIndex)
     return (
-      <Grid 
-      className = {this.props.classes.container} 
-      id="quote-box" 
-      justify="center" 
-      container 
-      style={{backgroundColor:this.state.colors[this.state.selectedColorIndex]}}>
-        <Grid className={this.props.classes.gridItem} xs={11} lg={8} item style={{color:this.state.colors[this.state.selectedColorIndex]} }>
-          {this.selectedQuote ?
-          <QuoteMachine 
-          selectedQuote={this.selectedQuote} 
-          assignNewQuoteIndex={this.assignNewQuoteIndex} 
-          textColor={this.state.colors[this.state.selectedColorIndex]}/>
-            : null
-          }
+        <Grid 
+        className = {this.props.classes.container} 
+        id="quote-box" 
+        justify="center"
+        style={{backgroundColor:this.state.colors[this.state.selectedColorIndex]}}>
+          <h2 >Welcome to the Random Quote Machine</h2>
+          <p style={{marginBottom: "-10px"}}>Click 'New Quote' to fresh your mind</p>
+          <Grid className={this.props.classes.gridItem} xs={11} lg={8} item style={{color:this.state.colors[this.state.selectedColorIndex]} }>
+            {this.selectedQuote ?
+            <QuoteMachine 
+            selectedQuote={this.selectedQuote} 
+            assignNewQuoteIndex={this.assignNewQuoteIndex} 
+            textColor={this.state.colors[this.state.selectedColorIndex]}/>
+              : null
+            }
+          </Grid>
+          <label>© Qian Tang 2020</label>
         </Grid>
-        
-        <label style={{display:'flex', displayDirection:'column', justifyContent:'flex-end'}}>© Qian Tang 2020</label>
-      </Grid>
-      
     );
   }
   
